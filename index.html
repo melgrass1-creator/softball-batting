@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚾ 棒壘球戰術指南｜用腦袋打球的藝術</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #0f0f0f;
+      --accent: #c8ff00;
+      --accent2: #00c8ff;
+      --text: #f0f0f0;
+      --muted: #666;
+      --muted2: #444;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(200,255,0,0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 80px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(20px);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 80px 100px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '⚾';
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 600px;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      letter-spacing: 6px;
+      color: var(--accent);
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(64px, 10vw, 160px);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -5px;
+      margin-bottom: 48px;
+      max-width: 950px;
+    }
+
+    .hero h1 span {
+      -webkit-text-stroke: 1px var(--muted2);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .badge.accent {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 100px 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-num {
+      font-size: 200px;
+      font-weight: 700;
+      letter-spacing: -12px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.08;
+      margin-bottom: -80px;
+      display: block;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      letter-spacing: 6px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(44px, 5.5vw, 80px);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1;
+      margin-bottom: 40px;
+    }
+
+    .core-slogan {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.5;
+      max-width: 760px;
+      padding: 28px 40px;
+      border-left: 3px solid var(--accent);
+      margin-bottom: 64px;
+    }
+
+    /* ===== INTRO STATS ROW ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-bottom: 60px;
+    }
+
+    .stat-box {
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .stat-box:hover {
+      border-color: var(--border-hover);
+    }
+
+    .stat-number {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -3px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ===== CARD GRID ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .card {
+      background: var(--bg);
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      background: rgba(200,255,0,0.02);
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 6px 12px;
+      background: rgba(200,255,0,0.1);
+      border: 1px solid rgba(200,255,0,0.2);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ===== SUB SECTION HEADERS ===== */
+    .sub-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 64px 0 32px;
+    }
+
+    .sub-header h3 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .sub-header-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sub-header-emoji {
+      font-size: 28px;
+    }
+
+    /* ===== STANCE GRID ===== */
+    .stance-grid {
+      display: grid;
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .stance-item {
+      display: grid;
+      grid-template-columns: 56px 1fr 280px 160px;
+      gap: 36px;
+      align-items: center;
+      padding: 28px 36px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .stance-item:hover {
+      border-color: var(--border-hover);
+      background: rgba(200,255,0,0.015);
+    }
+
+    .stance-num {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -3px;
+      color: var(--accent);
+      opacity: 0.45;
+      line-height: 1;
+    }
+
+    .stance-name {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .stance-name-en {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .stance-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .stance-pros {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 16px;
+      border-left: 2px solid var(--accent2);
+    }
+
+    .stance-tag {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ===== STEPS ===== */
+    .steps-container {
+      margin-top: 24px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2px;
+    }
+
+    .step-item {
+      padding: 28px 20px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+      position: relative;
+    }
+
+    .step-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .step-item::after {
+      content: '→';
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      opacity: 0.4;
+      font-size: 16px;
+    }
+
+    .step-item:last-child::after {
+      display: none;
+    }
+
+    .step-num {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -3px;
+      color: var(--accent);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ===== SKILL OPTIMIZATION ===== */
+    .skill-list {
+      display: grid;
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .skill-item {
+      display: grid;
+      grid-template-columns: 50px 1fr 360px;
+      gap: 28px;
+      align-items: center;
+      padding: 28px 36px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .skill-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .skill-icon {
+      font-size: 32px;
+    }
+
+    .skill-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .skill-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .skill-tip {
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg2);
+      padding: 14px 18px;
+      border-left: 2px solid var(--accent);
+      line-height: 1.6;
+    }
+
+    /* ===== PITCH GUIDE ===== */
+    .pitch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .pitch-card {
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .pitch-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .pitch-type {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .pitch-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .pitch-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .pitch-tip {
+      font-size: 12px;
+      color: var(--text);
+      padding: 10px 14px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+    }
+
+    /* ===== PITCH LOCATION GRID ===== */
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .location-card {
+      padding: 32px 24px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .location-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .location-zone {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .location-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .location-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ===== COMMON MISTAKES ===== */
+    .mistakes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .mistake-item {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 24px;
+      padding: 28px 32px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .mistake-item:hover {
+      border-color: rgba(255,80,80,0.2);
+    }
+
+    .mistake-icon {
+      font-size: 28px;
+      opacity: 0.7;
+    }
+
+    .mistake-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .mistake-fix {
+      font-size: 13px;
+      color: #ff6b6b;
+      line-height: 1.6;
+    }
+
+    /* ===== DRILLS ===== */
+    .drill-list {
+      display: grid;
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .drill-item {
+      display: grid;
+      grid-template-columns: 60px 1fr 300px;
+      gap: 28px;
+      align-items: center;
+      padding: 24px 32px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .drill-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .drill-num {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: var(--accent);
+      opacity: 0.4;
+    }
+
+    .drill-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .drill-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .drill-focus {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(0,200,255,0.08);
+      border: 1px solid rgba(0,200,255,0.2);
+      color: var(--accent2);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ===== FIELDING SECTION ===== */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .role-card {
+      padding: 44px 40px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+      position: relative;
+    }
+
+    .role-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .role-card-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .role-sub {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .role-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .role-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .role-key {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .role-key span {
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* ===== POSITION DETAILS ===== */
+    .position-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .position-card {
+      padding: 24px 16px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .position-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .position-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.5;
+      margin-bottom: 8px;
+    }
+
+    .position-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .position-task {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ===== THROWING MECHANICS ===== */
+    .throw-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .throw-step {
+      padding: 32px 24px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .throw-step:hover {
+      border-color: var(--border-hover);
+    }
+
+    .throw-num {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: var(--accent);
+      opacity: 0.35;
+      margin-bottom: 14px;
+    }
+
+    .throw-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .throw-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ===== BASERUNNING ===== */
+    .run-list {
+      display: grid;
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .run-item {
+      display: grid;
+      grid-template-columns: 56px 1fr 340px;
+      gap: 28px;
+      padding: 32px 36px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .run-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .run-icon {
+      font-size: 36px;
+    }
+
+    .run-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .run-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .run-detail {
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg2);
+      padding: 16px 20px;
+      border-left: 2px solid var(--accent);
+      line-height: 1.7;
+    }
+
+    /* ===== SLIDE TYPES ===== */
+    .slide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .slide-card {
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .slide-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .slide-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .slide-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .slide-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .slide-when {
+      font-size: 12px;
+      color: var(--accent);
+      padding: 8px 12px;
+      background: rgba(200,255,0,0.06);
+      border: 1px solid rgba(200,255,0,0.15);
+    }
+
+    /* ===== SIGNS & SIGNALS ===== */
+    .signs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .sign-card {
+      padding: 32px 36px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .sign-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .sign-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sign-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ===== QUICK REFERENCE TABLE ===== */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+
+    .ref-table th,
+    .ref-table td {
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .ref-table th {
+      background: var(--bg2);
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .ref-table td {
+      color: var(--muted);
+    }
+
+    .ref-table tr:hover td {
+      background: rgba(200,255,0,0.02);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 64px 80px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 2;
+      text-decoration: none;
+      display: block;
+    }
+
+    .footer-col a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ===== REVEAL ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .steps-grid { grid-template-columns: repeat(3, 1fr); }
+      .step-item::after { display: none; }
+      .position-grid { grid-template-columns: repeat(4, 1fr); }
+      .pitch-grid { grid-template-columns: repeat(2, 1fr); }
+      .location-grid { grid-template-columns: repeat(2, 1fr); }
+      .slide-grid { grid-template-columns: repeat(2, 1fr); }
+      .throw-steps { grid-template-columns: repeat(2, 1fr); }
+      .skill-item { grid-template-columns: 50px 1fr; }
+      .skill-item .skill-tip { display: none; }
+      .stance-item { grid-template-columns: 50px 1fr 140px; }
+      .stance-item .stance-pros { display: none; }
+      .run-item { grid-template-columns: 50px 1fr; }
+      .run-item .run-detail { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .drill-item { grid-template-columns: 50px 1fr; }
+      .drill-item .drill-focus { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 18px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 60px; }
+      section { padding: 60px 20px; }
+      .section-num { font-size: 100px; letter-spacing: -5px; }
+      .hero h1 { letter-spacing: -2px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .card-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .role-grid { grid-template-columns: 1fr; }
+      .position-grid { grid-template-columns: repeat(3, 1fr); }
+      .mistakes-grid { grid-template-columns: 1fr; }
+      .signs-grid { grid-template-columns: 1fr; }
+      .ref-table { font-size: 11px; }
+      footer { padding: 40px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">⚾ Baseball Guide</div>
+  <ul class="nav-links">
+    <li><a href="#home">🏠 首頁</a></li>
+    <li><a href="#basics">🧠 基本觀念</a></li>
+    <li><a href="#hitting">🏏 打擊教室</a></li>
+    <li><a href="#fielding">🧤 守備大師</a></li>
+    <li><a href="#baserunning">🏃 跑壘戰術</a></li>
+  </ul>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero" id="home">
+  <div class="hero-label">2026 棒壘球技術指南</div>
+  <h1>用腦袋<br><span>打一場好球</span></h1>
+  <p class="hero-sub">棒壘球不只是體能的較量，更是智慧與默契的展現。從基本觀念到實戰技巧，完整剖析這項運動的精髓，幫助你在場上做出最佳決策。</p>
+  <div class="hero-badges">
+    <div class="badge accent">⚾ 完整四大章節</div>
+    <div class="badge">🧠 觀念與心態</div>
+    <div class="badge">⚡ 實戰技巧</div>
+    <div class="badge">🏆 職業級教學</div>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 1: BASICS ==================== -->
+<section id="basics">
+  <span class="section-num reveal">01</span>
+  <div class="reveal">
+    <span class="section-tag">第一章｜Chapter 01</span>
+    <h2 class="section-title">基本觀念</h2>
+    <div class="core-slogan">
+      🧠 棒壘球是用腦打的運動，身體是我們最佳的執行夥伴！
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row reveal">
+    <div class="stat-box">
+      <div class="stat-number">60%</div>
+      <div class="stat-label">擊球力道來自下肢</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">70%</div>
+      <div class="stat-label">守備勝於進攻</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">3'</div>
+      <div class="stat-label">內野傳球限時</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">90'</div>
+      <div class="stat-label">壘包間距（英呎）</div>
+    </div>
+  </div>
+
+  <!-- Mindset Cards -->
+  <div class="card-grid">
+    <div class="card reveal">
+      <div class="card-icon">🧠</div>
+      <h3>預備心態</h3>
+      <p>球投出前，先在腦海中預演最佳劇本：「球打向我，我該傳哪裡？」帶著策略上場。每一球都是一次決策機會。</p>
+      <div class="card-tag">Mental Prep</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🛡️</div>
+      <h3>安全至上</h3>
+      <p>確實的熱身與收操，是保持絕佳狀態的秘诀。熱身打擊請從「慢速餵球」開始，讓身體順暢甦醒，避免運動傷害。</p>
+      <div class="card-tag">Safety First</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">📣</div>
+      <h3>團隊溝通</h3>
+      <p>場上充滿熱情！大聲喊出「我來接 (I got it!)」，隨時準備補位，展現絕佳團隊默契。沉默是守備的最大敵人。</p>
+      <div class="card-tag">Communication</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">👀</div>
+      <h3>專注觀察</h3>
+      <p>投手的每一個動作都有意義！注意投手的出手點、球旋轉方向、投球節奏，提前預判來球位置與速度。</p>
+      <div class="card-tag">Read the Game</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">⚡</div>
+      <h3>快速啟動</h3>
+      <p>不論打擊或守備，反應速度取決於專注度。保持身體在「蓄勢待發」的狀態，聽到擊球聲身體即自動啟動。</p>
+      <div class="card-tag">Explosive Start</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🏅</div>
+      <h3>正向態度</h3>
+      <p>失誤是成長的一部分！保持正向、專注下一球。消极情緒會傳染，積極態度同樣會感染整個團隊。</p>
+      <div class="card-tag">Positive Mindset</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CHAPTER 2: HITTING ==================== -->
+<section id="hitting">
+  <span class="section-num reveal">02</span>
+  <div class="reveal">
+    <span class="section-tag">第二章｜Chapter 02</span>
+    <h2 class="section-title">打擊教室</h2>
+    <div class="core-slogan">
+      🏏 擊球力道 60% 來自下肢，掌握重心轉移，釋放你的爆發力！
+    </div>
+  </div>
+
+  <!-- STANCES -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🎯</span>
+    <h3>最佳站位選擇</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="stance-grid">
+    <div class="stance-item reveal">
+      <div class="stance-num">01</div>
+      <div>
+        <div class="stance-name">封閉式 Closed</div>
+        <div class="stance-name-en">Maximum Stability</div>
+        <div class="stance-desc">雙腳與肩同寬，後腳微內扣，重心在兩腳前掌。能提供絕佳的擊球穩定度，適合追求擊球精準度的打者。</div>
+      </div>
+      <div class="stance-pros">
+        ✓ 後腳推蹬有力<br>
+        ✓ 擊球軌跡穩定<br>
+        ✓ 適合pull側強襲球
+      </div>
+      <div class="stance-tag">穩定型</div>
+    </div>
+    <div class="stance-item reveal">
+      <div class="stance-num">02</div>
+      <div>
+        <div class="stance-name">開放式 Open</div>
+        <div class="stance-name-en">Wide Angle Vision</div>
+        <div class="stance-desc">前腳稍遠離本壘板。能幫助你擁有更廣闘的視線，輕鬆掌握外角球，適合應對外角攻擊型投手。</div>
+      </div>
+      <div class="stance-pros">
+        ✓ 視角覆蓋範圍廣<br>
+        ✓ 容易應對外角球<br>
+        ✓ 身體自然往前推移
+      </div>
+      <div class="stance-tag">視角型</div>
+    </div>
+    <div class="stance-item reveal">
+      <div class="stance-num">03</div>
+      <div>
+        <div class="stance-name">半開放式 Semi-open</div>
+        <div class="stance-name-en">Balanced & Athletic</div>
+        <div class="stance-desc">前腳微開30-45度。完美兼顧穩定與靈活，是實戰中最推薦的流暢站位，適合各種投手類型。</div>
+      </div>
+      <div class="stance-pros">
+        ✓ 兼顧內外角球<br>
+        ✓ 啟動速度快<br>
+        ✓ 實戰應用最廣
+      </div>
+      <div class="stance-tag">實戰首選</div>
+    </div>
+  </div>
+
+  <!-- 6 STEPS -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">⚙️</span>
+    <h3>高效揮棒六步分解</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="steps-container">
+    <div class="steps-grid">
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <div class="step-title">準備姿勢</div>
+        <div class="step-desc">雙眼專注鎖定投手，重心平均，膝蓋微彎，身體保持柔軟放鬆，隨時準備啟動。</div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">2</div>
+        <div class="step-title">引棒 Load</div>
+        <div class="step-desc">雙手平順往胸口方向帶，球棒頭向後上方升起，儲備滿滿能量，營造爆發前兆。</div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">3</div>
+        <div class="step-title">前腳踏出</div>
+        <div class="step-desc">前腳輕盈落地，啟動下肢引擎，髖部順勢向打擊方向旋轉，重心向前移。</div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">4</div>
+        <div class="step-title">髖部轉開</div>
+        <div class="step-desc">髖關節完全轉向投手，肩膀留在後方，形成完美的「分離角」儲存彈弓效應。</div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">5</div>
+        <div class="step-title">手臂跟上</div>
+        <div class="step-desc">肩關節流暢跟隨轉開，手臂自然延伸，引導球棒進入最佳軌跡。</div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">6</div>
+        <div class="step-title">觸球與延伸</div>
+        <div class="step-desc">觸球瞬間雙手紮實握緊，手臂完全伸展，頭部保持絕對穩定。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PITCH TYPES -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🔮</span>
+    <h3>應對不同球種</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="pitch-grid">
+    <div class="pitch-card reveal">
+      <div class="pitch-type">Fastball</div>
+      <div class="pitch-name">🔥 直球</div>
+      <div class="pitch-desc">球速最快（業餘70-100mph+），進壘角度相對筆直。保持身心警戒，提前設定出棒時機。</div>
+      <div class="pitch-tip">💡 設定「攻擊區域」，不到目標區域不輕易出棒</div>
+    </div>
+    <div class="pitch-card reveal">
+      <div class="pitch-type">Breaking Ball</div>
+      <div class="pitch-name">🌀 變化球（曲球/滑球）</div>
+      <div class="pitch-desc">會在接近本壘板時產生横移或下墜。眼睛必須全程緊盯球，別被假動作誤導。</div>
+      <div class="pitch-tip">💡 耐心等待，不要追打離本壘板太遠的壞球</div>
+    </div>
+    <div class="pitch-card reveal">
+      <div class="pitch-type">Changeup</div>
+      <div class="pitch-name">🌊 變速球</div>
+      <div class="pitch-desc">外觀類似直球但速度慢30-40%。利用節奏改變欺敵，是所有投手最愛的秘密武器。</div>
+      <div class="pitch-tip">💡 注意手臂動作是否與直球相同，協助判斷球種</div>
+    </div>
+  </div>
+
+  <!-- PITCH LOCATION -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🎯</span>
+    <h3>好球帶戰略分析</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="location-grid">
+    <div class="location-card reveal">
+      <div class="location-zone">📐</div>
+      <div class="location-name">內角 high</div>
+      <div class="location-desc">最具攻擊性的位置。對右打者來說是身體外側。配合向上或往内的軌跡效果最佳。</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-zone">📐</div>
+      <div class="location-name">內角 low</div>
+      <div class="location-desc">攻擊內角低角度可以破壞打者節奏。往上的手腕動作可以有效應對。</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-zone">📐</div>
+      <div class="location-name">外角 high</div>
+      <div class="location-desc">對右打者是最難處理的角落。需要往外延伸手臂，對手腕負擔較大。</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-zone">📐</div>
+      <div class="location-name">外角 low</div>
+      <div class="location-desc">誘惑打者出棒的低角度壞球。耐心等待，別被「看起來像好球」的球欺騙。</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-zone">📐</div>
+      <div class="location-name">正中 high</div>
+      <div class="location-desc">最容易被攻擊的位置。不要放過！身體配合向上發力，盡情釋放力量。</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-zone">📐</div>
+      <div class="location-name">正中 low</div>
+      <div class="location-desc">好球但可攻擊。向下沉的球需要配合手腕上引動作，保持水平或向上掃擊。</div>
+    </div>
+  </div>
+
+  <!-- SKILL OPTIMIZATION -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🌟</span>
+    <h3>技巧優化指南</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="skill-list">
+    <div class="skill-item reveal">
+      <div class="skill-icon">🎯</div>
+      <div>
+        <div class="skill-title">揮棒軌跡</div>
+        <div class="skill-desc">保持「微微向上或水平掃擊」，能創造出漂亮的平飛球與長打。杜絕向下砍的壞習慣。</div>
+      </div>
+      <div class="skill-tip">✅ 理想：水平→微微向上<br>❌ 避免：大幅度往下砍</div>
+    </div>
+    <div class="skill-item reveal">
+      <div class="skill-icon">⚡</div>
+      <div>
+        <div class="skill-title">力量傳導</div>
+        <div class="skill-desc">多運用下肢帶動全身旋轉，這能讓你的揮棒既充滿力量又遠離運動傷害。力量鏈：地面→雙腳→雙腿→髖部→肩膀→手臂。</div>
+      </div>
+      <div class="skill-tip">每一下揮棒都是<br>一次全身的舞蹈</div>
+    </div>
+    <div class="skill-item reveal">
+      <div class="skill-icon">🏆</div>
+      <div>
+        <div class="skill-title">擊球策略</div>
+        <div class="skill-desc">先追求紮實的平飛球，建立無比的自信心，長打自然水到渠成！不要急於追求全壘打。</div>
+      </div>
+      <div class="skill-tip">平飛球是最甜的攻擊<br>長打是平飛球的累積</div>
+    </div>
+    <div class="skill-item reveal">
+      <div class="skill-icon">👁️</div>
+      <div>
+        <div class="skill-title">眼睛訓練</div>
+        <div class="skill-desc">練習用眼睛追蹤球從投手出手到觸球的完整軌跡。這能大幅提升辨識球種的能力。</div>
+      </div>
+      <div class="skill-tip">球離開手的那一刻<br>就開始追蹤它</div>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">⚠️</span>
+    <h3>常見錯誤修正</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="mistakes-grid">
+    <div class="mistake-item reveal">
+      <div class="mistake-icon">🚫</div>
+      <div>
+        <div class="mistake-title">甩棒太早（Early Swing）</div>
+        <div class="mistake-fix">修正：在球接近本壘板前保持抑制，等球進到攻擊區再爆發出棒。</div>
+      </div>
+    </div>
+    <div class="mistake-item reveal">
+      <div class="mistake-icon">🚫</div>
+      <div>
+        <div class="mistake-title">下巴過度抬起</div>
+        <div class="mistake-fix">修正：保持頭部穩定，眼睛持續追蹤球，下巴微收不過度上扬。</div>
+      </div>
+    </div>
+    <div class="mistake-item reveal">
+      <div class="mistake-icon">🚫</div>
+      <div>
+        <div class="mistake-title">過度追求長打</div>
+        <div class="mistake-fix">修正：先建立紮實的平飛球擊中率，再追求長打。自信來自稳定的擊球品質。</div>
+      </div>
+    </div>
+    <div class="mistake-item reveal">
+      <div class="mistake-icon">🚫</div>
+      <div>
+        <div class="mistake-title">手臂先於髖部</div>
+        <div class="mistake-fix">修正：記住「髖先於肩，肩先於臂」的順序，讓下肢帶動上半身旋轉。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRILLS -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🏋️</span>
+    <h3>日常訓練建議</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="drill-list">
+    <div class="drill-item reveal">
+      <div class="drill-num">01</div>
+      <div>
+        <div class="drill-title">T座訓練（Tee Work）</div>
+        <div class="drill-desc">定點擊打，建立正確的擊球軌跡與接觸點。每天50-100次，培養稳定的肌肉記憶。</div>
+      </div>
+      <div class="drill-focus">軌跡稳定</div>
+    + </div>
+    <div class="drill-item reveal">
+      <div class="drill-num">02</div>
+      <div>
+        <div class="drill-title">翻滾球訓練（Front Toss）</div>
+        <div class="drill-desc">教練或隊友站在側面拋球，訓練追蹤與反應能力。專注球員眼球運動與啟動時機。</div>
+      </div>
+      <div class="drill-focus">反應速度</div>
+    </div>
+    <div class="drill-item reveal">
+      <div class="drill-num">03</div>
+      <div>
+        <div class="drill-title">視覺訓練（Vision Training）</div>
+        <div class="drill-desc">使用網球或不同顏色球進行追蹤訓練，提升眼睛辨識球種與速度的能力。</div>
+      </div>
+      <div class="drill-focus">眼手協調</div>
+    </div>
+    <div class="drill-item reveal">
+      <div class="drill-num">04</div>
+      <div>
+        <div class="drill-title">爆發力訓練（Power Training）</div>
+        <div class="drill-desc">深蹲、硬拉、跳箱等下肢訓練，配合旋轉爆發動作，增強擊球爆發力與預防傷害。</div>
+      </div>
+      <div class="drill-focus">下肢力量</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CHAPTER 3: FIELDING ==================== -->
+<section id="fielding">
+  <span class="section-num reveal">03</span>
+  <div class="reveal">
+    <span class="section-tag">第三章｜Chapter 03</span>
+    <h2 class="section-title">守備大師</h2>
+    <div class="core-slogan">
+      🧤 用輕快的腳步迎接球，用穩健的下半身傳遞勝利！
+    </div>
+  </div>
+
+  <!-- POSITION OVERVIEW -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">📋</span>
+    <h3>各位置職責總覽</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="position-grid">
+    <div class="position-card reveal">
+      <div class="position-num">1</div>
+      <div class="position-name">投手 P</div>
+      <div class="position-task">發動進攻第一環，控制節奏與球場</div>
+    </div>
+    <div class="position-card reveal">
+      <div class="position-num">2</div>
+      <div class="position-name">捕手 C</div>
+      <div class="position-task">領導投手與內野，成為防守核心</div>
+    </div>
+    <div class="position-card reveal">
+      <div class="position-num">3</div>
+      <div class="position-name">一壘手 1B</div>
+      <div class="position-task">接應內野傳球，覆蓋一壘邊線</div>
+    </div>
+    <div class="position-card reveal">
+      <div class="position-num">4</div>
+      <div class="position-name">二壘手 2B</div>
+      <div class="position-task">cover二壘，處理中間滾地球</div>
+    </div>
+    <div class="position-card reveal">
+      <div class="position-num">5</div>
+      <div class="position-name">游擊手 SS</div>
+      <div class="position-task">內野心臟，處理中間與強襲球</div>
+    </div>
+    <div class="position-card reveal">
+      <div class="position-num">6</div>
+      <div class="position-name">三壘手 3B</div>
+      <div class="position-task">處理強襲球，快速傳一壘</div>
+    </div>
+    <div class="position-card reveal">
+      <div class="position-num">7-8-9</div>
+      <div class="position-name">外野手 OF</div>
+      <div class="position-task">覆盖大半球場，長傳助攻</div>
+    </div>
+  </div>
+
+  <!-- INFIELD / OUTFIELD -->
+  <div class="role-grid">
+    <div class="role-card reveal">
+      <div class="role-card-icon">🥊</div>
+      <div class="role-sub">內野手</div>
+      <div class="role-title">Infielders</div>
+      <div class="role-desc">球投出瞬間保持靈活小墊步。迎向滾地球時畫出流暢的圓弧，以「鱷魚嘴」雙手確實接球並溫柔收至胸口。接到球後抬頭快速找目標。</div>
+      <div class="role-key">
+        <span>鱷魚嘴接球</span>
+        <span>三步傳球</span>
+        <span>墊步啟動</span>
+        <span>抬頭找人</span>
+      </div>
+    </div>
+    <div class="role-card reveal">
+      <div class="role-card-icon">🦅</div>
+      <div class="role-sub">外野手</div>
+      <div class="role-title">Outfielders</div>
+      <div class="role-desc">聽到擊球聲，第一步精準往後退。接球後利用順暢的交叉墊步（Crow Hop），將球平穩地（One-bounce）傳進轉傳手的手套中。外野回傳內野時間要快。</div>
+      <div class="role-key">
+        <span>第一步向後</span>
+        <span>Crow Hop</span>
+        <span>One-bounce傳球</span>
+        <span>長傳助攻</span>
+      </div>
+    </div>
+    <div class="role-card reveal">
+      <div class="role-card-icon">🎯</div>
+      <div class="role-sub">投手</div>
+      <div class="role-title">Pitcher</div>
+      <div class="role-desc">專注於重心的平穩轉換，保持一致的漂亮出手點。投球後立即恢復守備姿勢，眼觀六路，注意打者與壘跑者動向。</div>
+      <div class="role-key">
+        <span>重心轉換</span>
+        <span>一致出手點</span>
+        <span>快速回位</span>
+        <span>觀察打者</span>
+      </div>
+    </div>
+    <div class="role-card reveal">
+      <div class="role-card-icon">🛡️</div>
+      <div class="role-sub">捕手</div>
+      <div class="role-title">Catcher</div>
+      <div class="role-desc">成為球隊最安心的護盾！雙膝跪地，身體正對球的軌跡，將球完美擋在身前。領導全場防守，喊出暗號與戰術。</div>
+      <div class="role-key">
+        <span>擋球能力</span>
+        <span>暗號領導</span>
+        <span>強肩傳球</span>
+        <span>情緒穩定</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THROWING MECHANICS -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🏒</span>
+    <h3>傳球基本功</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="throw-steps">
+    <div class="throw-step reveal">
+      <div class="throw-num">1</div>
+      <div class="throw-title">握球</div>
+      <div class="throw-desc">四縫線握法：食指與中指放在縫線上，拇指放在球下方，感受旋轉軸心。</div>
+    </div>
+    <div class="throw-step reveal">
+      <div class="throw-num">2</div>
+      <div class="throw-title">準備</div>
+      <div class="throw-desc">雙手放在身前，身體側對目標，腳尖指向傳球方向，非投球手輔助護球。</div>
+    </div>
+    <div class="throw-step reveal">
+      <div class="throw-num">3</div>
+      <div class="throw-title">引球</div>
+      <div class="throw-desc">投球手向後拉至耳後位置，手肘高度與肩同高，視線始終保持在目標上。</div>
+    </div>
+    <div class="throw-step reveal">
+      <div class="throw-num">4</div>
+      <div class="throw-title">出手</div>
+      <div class="throw-desc">向前跨步，髖部帶動肩膀旋轉，手臂快速跟進，follow through至對側腰際。</div>
+    </div>
+  </div>
+
+  <!-- COMMUNICATION -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">📢</span>
+    <h3>守備溝通與暗號</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="signs-grid">
+    <div class="sign-card reveal">
+      <div class="sign-title">🔊 「我來接！」</div>
+      <div class="sign-desc">當面對可能多人接應的球時，大聲喊出「I got it!」或「Mine!」避免互相禮讓造成失誤。這是內野最基本的溝通。</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-title">🔊 「換！」</div>
+      <div class="sign-desc">在雙殺情況下，野手之間需要大聲喊「Switch」或「You!」確認彼此角色交換，確保傳球流暢。</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-title">🔊 「早發！」</div>
+      <div class="sign-desc">外野手判斷球會落地早於預期時，大喊「Early!」提醒內野手提前準備可能的補位或轉傳。</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-title">🔊 「掩護！」</div>
+      <div class="sign-desc">游擊手或二壘手需要繞到特定位置掩護時，大聲喊「Cover!」讓隊友知道你的位置與意圖。</div>
+    </div>
+  </div>
+
+  <!-- DOUBLE PLAY -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🔄</span>
+    <h3>雙殺配合關鍵</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <table class="ref-table reveal">
+    <thead>
+      <tr>
+        <th>情境</th>
+        <th>游擊手 / 二壘手</th>
+        <th>野手傳球</th>
+        <th>關鍵提示</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>標準雙殺 (4-6-3)</td>
+        <td>游擊手接球 → 傳二壘 → 隊友傳一壘</td>
+        <td>传球者抬頭確認目標再出手</td>
+        <td>保持低重心，腳尖踢土</td>
+      </tr>
+      <tr>
+        <td>逆雙殺 (6-4-3)</td>
+        <td>二壘手接球 → 游擊手補位傳一壘</td>
+        <td>二壘手快速上壘做彈射</td>
+        <td>踏壘時間是關鍵</td>
+      </tr>
+      <tr>
+        <td>三壘轉一壘 (5-3-1)</td>
+        <td>三壘手掩護 → 游擊手傳一壘</td>
+        <td>長傳需配合Crow Hop</td>
+        <td>控制傳球節奏</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== CHAPTER 4: BASERUNNING ==================== -->
+<section id="baserunning">
+  <span class="section-num reveal">04</span>
+  <div class="reveal">
+    <span class="section-tag">第四章｜Chapter 04</span>
+    <h2 class="section-title">跑壘戰術</h2>
+    <div class="core-slogan">
+      🏃 用積極的態度與敏銳的觀察，成為對手最大的壓力！
+    </div>
+  </div>
+
+  <!-- CORE CONCEPTS -->
+  <div class="run-list">
+    <div class="run-item reveal">
+      <div class="run-icon">🏃</div>
+      <div>
+        <div class="run-title">積極起跑</div>
+        <div class="run-desc">擊出球後，全力衝刺邁向一壘！踏上壘包時保持敏銳，隨時準備發動下一波進攻。業餘球員常常起步太慢浪費時間。</div>
+      </div>
+      <div class="run-detail">擊球瞬間就啟動！從本壘到一壘約27公尺業餘球員一般在4秒以內完成為目標</div>
+    </div>
+    <div class="run-item reveal">
+      <div class="run-icon">🧠</div>
+      <div>
+        <div class="run-title">聰明判斷｜推進時機</div>
+        <div class="run-desc">球打向一二壘間，自信邁向三壘；外野高飛球時，先回踩壘包（Tag-up），看準接殺瞬間果斷啟動。</div>
+      </div>
+      <div class="run-detail">Tag-up：外野飛球時，所有跑者需踩壘後才能推進。聽到「catch」聲才能鬆開壘包</div>
+    </div>
+    <div class="run-item reveal">
+      <div class="run-icon">📏</div>
+      <div>
+        <div class="run-title">精準距離感</div>
+        <div class="run-desc">熟悉各壘包間的距離（90英呎≈27.4公尺），在腦中建立「時間-距離」模型，幫助你做出最佳判斷。</div>
+      </div>
+      <div class="run-detail">一般業餘球員：跑步速度每小時約20-25英里從二壘到本壘約7-8秒</div>
+    </div>
+    <div class="run-item reveal">
+      <div class="run-icon">👀</div>
+      <div>
+        <div class="run-title">觀察三方</div>
+        <div class="run-desc">繞過壘包時，用眼角餘光觀察：教練暗號、球的位置、防守佈局。耳朵也要打開，聽從教練暗號。</div>
+      </div>
+      <div class="run-detail">教練暗號通常在到達下一個壘包前會給出耐心等待暗號再行動</div>
+    </div>
+  </div>
+
+  <!-- SLIDE TYPES -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🦵</span>
+    <h3>滑壘技術解析</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="slide-grid">
+    <div class="slide-card reveal">
+      <div class="slide-icon">🔢</div>
+      <div class="slide-title">4字型滑壘（Hook Slide）</div>
+      <div class="slide-desc">距離壘包約3步時流暢啟動，重心放低向後仰。前腳彎曲鈎住壘包外側，後腳內側贴地滑行。這是最標準且安全的滑壘方式。</div>
+      <div class="slide-when">何時使用：幾乎所有正常滑壘情境，特別是避免碰撞時</div>
+    </div>
+    <div class="slide-card reveal">
+      <div class="slide-icon">⬇️</div>
+      <div class="slide-title">倒向前滑壘（Head-first Slide）</div>
+      <div class="slide-desc">身體向前伸展，單手先觸壘包。速度快但受傷風險較高。業餘球員建議尽量避免，除非必要情況。</div>
+      <div class="slide-when">何時使用：需要快速伸手觸壘，且確定前面沒有防守者</div>
+    </div>
+    <div class="slide-card reveal">
+      <div class="slide-icon">⬆️</div>
+      <div class="slide-title">腳先滑壘（Feet-first Slide）</div>
+      <div class="slide-desc">雙腳先著地，身體向後仰。比較安全但速度較慢。適合有防守者在你前面但你仍想嘗試時。</div>
+      <div class="slide-when">何時使用：前方有防守者可能阻擋，想避免碰撞時</div>
+    </div>
+  </div>
+
+  <!-- KEY DECISIONS -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">🤔</span>
+    <h3>常見情境判斷</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <table class="ref-table reveal">
+    <thead>
+      <tr>
+        <th>情境</th>
+        <th>最佳決策</th>
+        <th>關鍵原則</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>中外野深遠飛球</td>
+        <td>Tag-up，等接殺後推進</td>
+        <td>千萬不要在球還在空中時就浪費脚步</td>
+      </tr>
+      <tr>
+        <td>一二壘間穿越安打</td>
+        <td>全力跑向二壘，再視情況滑三壘</td>
+        <td>不要在跑向二壘時就停下來</td>
+      </tr>
+      <tr>
+        <td>外野滾地球</td>
+        <td>全力跑，外野手可能失誤</td>
+        <td>積極態度可能造成防守壓力</td>
+      </tr>
+      <tr>
+        <td>犧牲打情境</td>
+        <td>强推離壘包5-7步，準備啟動</td>
+        <td>犧牲自己是光榮的任務</td>
+      </tr>
+      <tr>
+        <td>被盗壘</td>
+        <td>看球不看壘，聽暗號</td>
+        <td>信任捕手的阻殺能力</td>
+      </tr>
+      <tr>
+        <td>球打在線邊</td>
+        <td>Fan Sliding避免出界</td>
+        <td>先踩壘再考慮下一步</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SIGNS FROM COACH -->
+  <div class="sub-header reveal">
+    <span class="sub-header-emoji">✋</span>
+    <h3>教練暗號參考</h3>
+    <div class="sub-header-line"></div>
+  </div>
+
+  <div class="signs-grid">
+    <div class="sign-card reveal">
+      <div class="sign-title">👉 前綴動「走」</div>
+      <div class="sign-desc">跑！全力往前冲，不要停下來。</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-title">✋ 前綴動「停」</div>
+      <div class="sign-desc">在当前位置停下來，等待進一步暗號。</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-title">↩️ 前綴動「回」</div>
+      <div class="sign-desc">回到上一個壘包，不要繼續前進。</div>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-title">🤚 前綴動「滑」</div>
+      <div class="sign-desc">下一個壘包採用滑壘，不要冒險站立。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>棒壘球戰術指南</h4>
+      <p>從基本觀念到實戰技巧，<br>幫助你在場上做出最佳決策。</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速導覽</h4>
+      <a href="#home">🏠 首頁</a>
+      <a href="#basics">🧠 基本觀念</a>
+      <a href="#hitting">🏏 打擊教室</a>
+      <a href="#fielding">🧤 守備大師</a>
+      <a href="#baserunning">🏃 跑壘戰術</a>
+    </div>
+    <div class="footer-col">
+      <h4>核心理念</h4>
+      <p>⚾ 棒壘球是用腦打的運動</p>
+      <p>🏏 60%力道來自下肢</p>
+      <p>🛡️ 安全是第一名</p>
+      <p>📣 溝通創造勝利</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>⚾ 棒壘球是用腦打的運動 — 2026</p>
+    <p style="color:var(--accent);">用腦袋，打一場好球</p>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
