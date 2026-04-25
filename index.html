@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚾ 壘球打擊重點手冊 | 二十年職業教練出品</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFDF5;
+      --yellow: #FFE600;
+      --red: #FF3B30;
+      --blue: #0A84FF;
+      --green: #30D158;
+      --orange: #FF9500;
+      --dark: #1C1C1E;
+      --gray: #8E8E93;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      background: var(--yellow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: clamp(80px, 15vw, 220px);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -4px;
+      color: var(--dark);
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero h1 .outline {
+      -webkit-text-stroke: 3px var(--dark);
+      color: transparent;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 700;
+      margin-top: 30px;
+      max-width: 600px;
+      line-height: 1.4;
+    }
+
+    .hero .badge {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 300px;
+      height: 300px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+    }
+
+    .hero .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 60px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-hint .arrow {
+      display: inline-block;
+      width: 40px;
+      height: 3px;
+      background: var(--dark);
+      animation: slideRight 1s infinite;
+    }
+
+    @keyframes slideRight {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(15px); }
+    }
+
+    /* ── SECTION INTRO ── */
+    .intro {
+      background: var(--dark);
+      color: white;
+      padding: 120px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro .num {
+      font-size: 200px;
+      font-weight: 900;
+      color: var(--yellow);
+      line-height: 1;
+      letter-spacing: -8px;
+    }
+
+    .intro h2 {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .intro p {
+      font-size: 20px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin-top: 24px;
+    }
+
+    /* ── SECTION: STANCES ── */
+    .stances {
+      padding: 120px 60px;
+      background: white;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(60px, 10vw, 140px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 0.9;
+    }
+
+    .section-header .tag {
+      background: var(--blue);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .stance-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .stance-card {
+      background: var(--bg);
+      border-radius: 24px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .stance-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .stance-card .card-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .stance-card .card-body {
+      padding: 28px 32px 36px;
+      position: relative;
+    }
+
+    .stance-card .num {
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--dark);
+      letter-spacing: -4px;
+      line-height: 1;
+      position: absolute;
+      top: -50px;
+      right: 20px;
+    }
+
+    .stance-card h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .stance-card p {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .stance-card .emoji-badge {
+      position: absolute;
+      top: -20px;
+      left: 28px;
+      background: var(--red);
+      color: white;
+      font-size: 36px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ── SECTION: MECHANICS ── */
+    .mechanics {
+      padding: 120px 60px;
+      background: var(--dark);
+      color: white;
+    }
+
+    .mechanics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .mech-block {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 40px;
+      transition: background 0.3s, border-color 0.3s;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .mech-block:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--yellow);
+    }
+
+    .mech-block .mech-visual {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 900;
+    }
+
+    .mech-block:nth-child(1) .mech-visual { background: var(--yellow); color: var(--dark); }
+    .mech-block:nth-child(2) .mech-visual { background: var(--blue); color: white; }
+    .mech-block:nth-child(3) .mech-visual { background: var(--red); color: white; }
+    .mech-block:nth-child(4) .mech-visual { background: var(--green); color: white; }
+    .mech-block:nth-child(5) .mech-visual { background: var(--orange); color: white; }
+    .mech-block:nth-child(6) .mech-visual { background: #BF5AF2; color: white; }
+
+    .mech-block .mech-content h3 {
+      font-size: 26px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .mech-block .mech-content p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0;
+      line-height: 1.6;
+    }
+
+    .mech-block .step {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: 11px;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* ── SWING SEQUENCE ── */
+    .swing-seq {
+      padding: 120px 60px;
+      background: var(--bg);
+    }
+
+    .swing-seq h2 {
+      font-size: clamp(50px, 8vw, 100px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      color: var(--dark);
+      line-height: 0.9;
+      margin-bottom: 12px;
+    }
+
+    .swing-seq .sub {
+      font-size: 20px;
+      color: var(--gray);
+      margin-bottom: 50px;
+    }
+
+    .swing-steps {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .swing-step {
+      position: relative;
+    }
+
+    .swing-step .step-img-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+      background: var(--dark);
+    }
+
+    .swing-step .step-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .swing-step:hover .step-img-wrap img {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .swing-step .step-num {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: 18px;
+      font-weight: 900;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swing-step .step-label {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .swing-step .step-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    .swing-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      font-size: 24px;
+      opacity: 0.3;
+    }
+
+    /* ── SECTION: COMMON MISTAKES ── */
+    .mistakes {
+      padding: 120px 60px;
+      background: var(--red);
+      color: white;
+    }
+
+    .mistakes h2 {
+      font-size: clamp(60px, 10vw, 120px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 0.9;
+    }
+
+    .mistakes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .mistake-item {
+      background: rgba(0,0,0,0.2);
+      border-radius: 20px;
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .mistake-item .icon {
+      font-size: 48px;
+      flex-shrink: 0;
+    }
+
+    .mistake-item h4 {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .mistake-item p {
+      font-size: 16px;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* ── SECTION: QUICK TIPS ── */
+    .tips {
+      padding: 120px 60px;
+      background: var(--yellow);
+    }
+
+    .tips h2 {
+      font-size: clamp(60px, 10vw, 120px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      color: var(--dark);
+      line-height: 0.9;
+    }
+
+    .tips-list {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .tip-item {
+      background: white;
+      border-radius: 16px;
+      padding: 30px 36px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .tip-item:hover {
+      transform: scale(1.02);
+    }
+
+    .tip-item .tip-num {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: -2px;
+    }
+
+    .tip-item p {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px;
+      text-align: center;
+    }
+
+    footer .coach {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    footer .years {
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--yellow);
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    footer p {
+      color: var(--gray);
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee {
+      background: var(--blue);
+      color: white;
+      padding: 16px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { padding: 0 30px; }
+      .hero .badge { display: none; }
+      .intro { grid-template-columns: 1fr; padding: 80px 30px; gap: 40px; }
+      .intro .num { font-size: 120px; }
+      .stances, .mechanics, .mistakes, .tips { padding: 80px 30px; }
+      .stance-cards { grid-template-columns: 1fr; }
+      .mechanics-grid, .mistakes-grid, .tips-list { grid-template-columns: 1fr; }
+      .section-header h2 { font-size: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">⚾ COACH.JARVIS</div>
+    <ul class="nav-links">
+      <li><a href="#stances">握法與站位</a></li>
+      <li><a href="#mechanics">擊球力學</a></li>
+      <li><a href="#swing">揮棒分解</a></li>
+      <li><a href="#mistakes">常見錯誤</a></li>
+      <li><a href="#tips">速成重點</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>
+      <span>SOFTBALL</span>
+      <span class="outline">BATTING</span>
+      <span>HANDBOOK</span>
+    </h1>
+    <p class="subtitle">二十年職業教練實戰心法｜從握棒到揮擊，拆解每一個關鍵細節</p>
+    <div class="badge">⚾</div>
+    <div class="scroll-hint">
+      <span class="arrow"></span>
+      SCROLL TO START
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-inner">
+      ⚾ 擊球力道來自下肢 ◆ 重心轉移是關鍵 ⚾ 練習量決定穩定性 ◆ 視線追蹤球心 ◆ 揮棒軌跡要長 ◆ 握力決定控制力 ⚾ 每天100次揮棒 ◆ 姿勢對了力量自然來 ⚾
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="num">01</div>
+    <div>
+      <h2>為什麼打擊<br>需要系統化訓練？</h2>
+      <p>業餘選手最常見的問題，不是力量不夠，而是「觀念錯誤」。姿勢對了，力量自然出來；觀念錯了，練再多都是固化壞習慣。二十年職業生涯，我帶過無數打者，有些天生怪力，但真正能穩定輸出的，都是把基本功做到極致的球員。</p>
+    </div>
+  </section>
+
+  <!-- STANCES -->
+  <section class="stances" id="stances">
+    <div class="section-header">
+      <h2>握法與站位</h2>
+      <span class="tag">GRIP & STANCE</span>
+    </div>
+    <div class="stance-cards">
+      <div class="stance-card">
+        <img class="card-img" src="images/batter_stance1.jpg" alt="封閉式站位" />
+        <div class="card-body">
+          <div class="emoji-badge">🦶</div>
+          <div class="num">01</div>
+          <h3>基本封閉式站位</h3>
+          <p>雙腳與肩同寬，力量腳（後腳）略微內扣。重心均勻分布於兩腳前掌，膝蓋微彎。這是初學者最該先熟練的姿勢。</p>
+        </div>
+      </div>
+      <div class="stance-card">
+        <img class="card-img" src="images/batter_stance2.jpg" alt="開放式站位" />
+        <div class="card-body">
+          <div class="emoji-badge">🦵</div>
+          <div class="num">02</div>
+          <h3>開放式站位</h3>
+          <p>前腳稍微遠離本壘板，身體側對投手。此姿勢有助於提升追蹤外角球的能力，常用於應對外角直球。</p>
+        </div>
+      </div>
+      <div class="stance-card">
+        <img class="card-img" src="images/baseball_helmet.jpg" alt="半開放式站位" />
+        <div class="card-body">
+          <div class="emoji-badge">🔄</div>
+          <div class="num">03</div>
+          <h3>半開放式站位</h3>
+          <p>介於封閉與開放之間，前腳微開30-45度。兼顧穩定性與靈活性，是大多數職業打者偏好的實戰站位。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANICS -->
+  <section class="mechanics" id="mechanics">
+    <div class="section-header">
+      <h2>擊球力學</h2>
+      <span class="tag" style="background:var(--yellow);color:var(--dark)">MECHANICS</span>
+    </div>
+    <div class="mechanics-grid">
+      <div class="mech-block">
+        <div class="mech-visual">🦶</div>
+        <div class="mech-content">
+          <span class="step">STEP 01</span>
+          <h3>下肢驅動</h3>
+          <p>擊球力道 60% 來自下肢。力量從後腳髖關節啟動，帶動前腳膝蓋向上頂出，髖部快速旋轉。這是所有爆發力的源頭。</p>
+        </div>
+      </div>
+      <div class="mech-block">
+        <div class="mech-visual">🔄</div>
+        <div class="mech-content">
+          <span class="step">STEP 02</span>
+          <h3>髖部旋轉</h3>
+          <p>髖關節先於肩關節轉開，兩者形成「分離角」。這個延遲儲存彈弓效應的能量，是增加擊球初速的關鍵機制。</p>
+        </div>
+      </div>
+      <div class="mech-block">
+        <div class="mech-visual">💪</div>
+        <div class="mech-content">
+          <span class="step">STEP 03</span>
+          <h3>肩膀與手臂</h3>
+          <p>手臂在準備動作時保持放鬆，揮擊時自然延伸。避免「推擊」——用手臂力量硬推會犧牲擊球距離與控制力。</p>
+        </div>
+      </div>
+      <div class="mech-block">
+        <div class="mech-visual">👀</div>
+        <div class="mech-content">
+          <span class="step">STEP 04</span>
+          <h3>視線追蹤</h3>
+          <p>眼睛全程鎖定球心，直到球棒接觸球的瞬間。頭部保持靜止，任何頭部晃動都會破壞擊球點的精準度。</p>
+        </div>
+      </div>
+      <div class="mech-block">
+        <div class="mech-visual">⚡</div>
+        <div class="mech-content">
+          <span class="step">STEP 05</span>
+          <h3>揮棒軌跡</h3>
+          <p>理想軌跡是微微向上或水平掃擊，絕非往下砍。往下砍會製造大量滾地球，往上掃則能產生更多長打。</p>
+        </div>
+      </div>
+      <div class="mech-block">
+        <div class="mech-visual">🤝</div>
+        <div class="mech-content">
+          <span class="step">STEP 06</span>
+          <h3>握力控制</h3>
+          <p>握棒時手指自然分配，不要過度用力。觸球瞬間「握緊」，其餘時間保持放鬆——過度握棒是疲勞和受傷的根源。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWING SEQUENCE -->
+  <section class="swing-seq" id="swing">
+    <div class="section-header">
+      <h2>揮棒六步分解</h2>
+      <span class="tag" style="background:var(--dark);color:white">SWING SEQUENCE</span>
+    </div>
+    <p class="sub">從準備動作到擊球瞬間 — 每一個階段都有它的任務</p>
+    <div class="swing-steps">
+      <div class="swing-step">
+        <div class="step-img-wrap">
+          <span class="step-num">1</span>
+          <img src="images/batter_stance1.jpg" alt="準備姿勢" />
+        </div>
+        <div class="step-label">準備姿勢</div>
+        <div class="step-desc">雙眼注視投手，膝蓋微彎，重心平均分布，身體完全放鬆</div>
+      </div>
+      <div class="swing-step">
+        <div class="step-img-wrap">
+          <span class="step-num">2</span>
+          <img src="images/batter_stance2.jpg" alt="引棒" />
+        </div>
+        <div class="step-label">引棒（Load）</div>
+        <div class="step-desc">雙手往胸口方向拉，球棒頭向後上方升起，儲存彈弓能量</div>
+      </div>
+      <div class="swing-step">
+        <div class="step-img-wrap">
+          <span class="step-num">3</span>
+          <img src="images/baseball_helmet.jpg" alt="前腳踏出" />
+        </div>
+        <div class="step-label">前腳踏出</div>
+        <div class="step-desc">前腳率先落地，啟動下肢驅動，髖部開始向打擊方向旋轉</div>
+      </div>
+      <div class="swing-step">
+        <div class="step-img-wrap">
+          <span class="step-num">4</span>
+          <img src="images/batter_stance1.jpg" alt="髖部轉開" />
+        </div>
+        <div class="step-label">髖部轉開</div>
+        <div class="step-desc">髖關節完全轉向投手方向，手臂尚未跟進，形成最大分離角</div>
+      </div>
+      <div class="swing-step">
+        <div class="step-img-wrap">
+          <span class="step-num">5</span>
+          <img src="images/batter_stance2.jpg" alt="手臂跟上" />
+        </div>
+        <div class="step-label">手臂跟上</div>
+        <div class="step-desc">肩關節跟隨髖部轉開，手臂自然延伸，球棒開始加速向下</div>
+      </div>
+      <div class="swing-step">
+        <div class="step-img-wrap">
+          <span class="step-num">6</span>
+          <img src="images/baseball_helmet.jpg" alt="觸球與延伸" />
+        </div>
+        <div class="step-label">觸球與延伸</div>
+        <div class="step-desc">球棒與球接觸的瞬間，雙手握緊，手臂完全伸展，頭部保持靜止</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISTAKES -->
+  <section class="mistakes" id="mistakes">
+    <div class="section-header">
+      <h2>常見錯誤</h2>
+      <span class="tag" style="background:white;color:var(--red)">MISTAKES</span>
+    </div>
+    <div class="mistakes-grid">
+      <div class="mistake-item">
+        <div class="icon">❌</div>
+        <div>
+          <h4>提前引棒（Early Cocking）</h4>
+          <p>在球還沒進到好球帶範圍就早早把球棒往後拉。會讓你喪失揮擊時間，導致大量慢性球打不好。</p>
+        </div>
+      </div>
+      <div class="mistake-item">
+        <div class="icon">❌</div>
+        <div>
+          <h4>甩手腕（Wrist Roll）</h4>
+          <p>過度依賴手腕翻轉而非整體動力鏈傳導。會造成擊球無力、手腕疲勞甚至受傷。</p>
+        </div>
+      </div>
+      <div class="mistake-item">
+        <div class="icon">❌</div>
+        <div>
+          <h4>只用手臂力量</h4>
+          <p>下肢不參與、只用上半身推擊。力量上限低，且手臂負擔大，容易過度使用傷害。</p>
+        </div>
+      </div>
+      <div class="mistake-item">
+        <div class="icon">❌</div>
+        <div>
+          <h4>頭部晃動</h4>
+          <p>擊球瞬間頭部離開定點，眼睛失去追蹤目標。幾乎必然導致擊球點偏移、掌握度下降。</p>
+        </div>
+      </div>
+      <div class="mistake-item">
+        <div class="icon">❌</div>
+        <div>
+          <h4>好球帶判斷失誤</h4>
+          <p>追逐外角壞球，身體過度往外側移動，破壞了整個打擊姿勢的平衡與節奏。</p>
+        </div>
+      </div>
+      <div class="mistake-item">
+        <div class="icon">❌</div>
+        <div>
+          <h4>過度追求長打</h4>
+          <p>每一次都想大支全壘打，反而破壞擊球機制。好的打者是先用紮實的平飛球建立信任，長打自然會來。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="tips" id="tips">
+    <div class="section-header">
+      <h2>速成重點</h2>
+      <span class="tag" style="background:var(--dark);color:white">QUICK TIPS</span>
+    </div>
+    <div class="tips-list">
+      <div class="tip-item">
+        <div class="tip-num">01</div>
+        <p>擊球前、後腳前掌為重心，膝蓋保持彈性</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">02</div>
+        <p>球棒往球的方向延伸，不是往上或往下砍</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">03</div>
+        <p>觸球瞬間握緊，其餘時間手指保持輕鬆</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">04</div>
+        <p>練習時把注意力放在「追上球」，不是力量</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">05</div>
+        <p>每天空揮50次，順序記錄手感與流暢度</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">06</div>
+        <p>熱身時先從慢速喂球開始，循序加速</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="coach">COACH.JARVIS</div>
+    <div class="years">20</div>
+    <p>YEARS PROFESSIONAL BASEBALL EXPERIENCE ⚾ 二十年職業棒壘球教練出品</p>
+  </footer>
+
+</body>
+</html>
